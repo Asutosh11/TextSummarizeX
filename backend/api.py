@@ -26,6 +26,7 @@ def upload_file():
             
                 if(fileExtension == 'txt'):
                     raw_txt = fileReader.readTxt(file)
+                    raw_txt = raw_txt.decode()
                 
                 elif(fileExtension == 'pdf'):
                     raw_txt = fileReader.readPdf(file)
@@ -36,8 +37,8 @@ def upload_file():
                 elif(fileExtension == 'doc'):
                     raw_txt = fileReader.readDocx(file)
                           
-                decoded_txt = raw_txt.decode()
-                stripped_text = decoded_txt.strip().replace("\n","")
+                
+                stripped_text = raw_txt.strip().replace("\n","")
                 summary = largeModel.summarize(stripped_text)
                 txt_no_special_chars_in_start = re.sub(r"^\W+", "", summary)
                 return txt_no_special_chars_in_start
