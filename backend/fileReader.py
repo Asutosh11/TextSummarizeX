@@ -1,5 +1,13 @@
 from docx import Document
-import PyPDF2
+
+from io import StringIO
+
+from pdfminer.converter import TextConverter
+from pdfminer.layout import LAParams
+from pdfminer.pdfdocument import PDFDocument
+from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
+from pdfminer.pdfpage import PDFPage
+from pdfminer.pdfparser import PDFParser
 
 
 def allowed_file(filename):
@@ -21,10 +29,13 @@ def readDocx(filename):
     return txt
 
 def readPdf(filename):
-    pdfReader = PyPDF2.PdfFileReader(filename)
-    count = pdfReader.numPages
-    txt = ""
-    for i in range(count):
-        page = pdfReader.getPage(i)
-        txt = txt + page.extractText()
-    return txt
+    output_string = StringIO()
+    parser = PDFParser(filename)
+    doc = PDFDocument(parser)
+    rsrcmgr = PDFResourceManager()
+    device = TextConverter(rsrcmgr, output_string, laparams=LAParams())
+    interpreter = PDFPageInterpreter(rsrcmgr, device)
+    for page in PDFPage.create_pages(doc):
+        interpreter.process_page(page)
+
+    return(output_string.getvalue())

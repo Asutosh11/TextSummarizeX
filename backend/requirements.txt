@@ -2,4 +2,4 @@ torch
 transformers
 Flask==1.0
 python-docx
-PyPDF2
+pdfminer.six
