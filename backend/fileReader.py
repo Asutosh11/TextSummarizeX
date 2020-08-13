@@ -1,6 +1,3 @@
-import os
-from flask import Flask, flash, request, redirect, url_for
-from werkzeug.utils import secure_filename
 from docx import Document
 import PyPDF2
 
@@ -18,11 +15,10 @@ def readTxt(fileName):
 
 def readDocx(filename):
     doc = Document(filename)
-    fullText = []
+    txt = ""
     for para in doc.paragraphs:
-        fullText.append(para.text)
-        print(para.text)
-    return '\n'.join(fullText)
+        txt = txt + para.text
+    return txt
 
 def readPdf(filename):
     pdfReader = PyPDF2.PdfFileReader(filename)
@@ -31,4 +27,4 @@ def readPdf(filename):
     for i in range(count):
         page = pdfReader.getPage(i)
         txt = txt + page.extractText()
-    return(txt)
+    return txt

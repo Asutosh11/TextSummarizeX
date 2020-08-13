@@ -1,8 +1,8 @@
-from flask import Flask, request, jsonify, flash, redirect, url_for
+from flask import Flask, request, redirect, url_for
 import smallModel, largeModel
-from werkzeug.utils import secure_filename
-import os
 import fileReader
+import re
+
 
 
 UPLOAD_FOLDER = '/uploads'
@@ -25,16 +25,22 @@ def upload_file():
         if file and allowed_file(file.filename):
             
                 if(fileExtension == 'txt'):
-                    return fileReader.readTxt(file)
+                    raw_txt = fileReader.readTxt(file)
                 
                 elif(fileExtension == 'pdf'):
-                    return fileReader.readPdf(file)
+                    raw_txt = fileReader.readPdf(file)
                 
                 elif(fileExtension == 'docx'):
-                    return fileReader.readDocx(file)
+                    raw_txt = fileReader.readDocx(file)
                 
                 elif(fileExtension == 'doc'):
-                    return ""
+                    raw_txt = fileReader.readDocx(file)
+                          
+                decoded_txt = raw_txt.decode()
+                stripped_text = decoded_txt.strip().replace("\n","")
+                summary = largeModel.summarize(stripped_text)
+                txt_no_special_chars_in_start = re.sub(r"^\W+", "", summary)
+                return txt_no_special_chars_in_start
         else:
             return "null"
 
@@ -43,33 +49,5 @@ def upload_file():
 def display():
     return "Looks like it works!"
 
-# API Request from front wend is - 
-# URL - 127.0.0.1:5000/json-example  
-# Raw JSON Request - {"language":"french", "framework":"flask"}
-
-@app.route('/summarize-small-model', methods=['POST']) 
-def summarize_small_model():
-    req_data = request.get_json(force=True)
-    
-    text = req_data['text']
-    result = smallModel.summarize(text)
-    
-    return jsonify(summary = result)
-
-
-@app.route('/summarize-large-model', methods=['POST']) 
-def summarize_large_model():
-    req_data = request.get_json(force=True)
-    
-    text = req_data['text']
-    result = largeModel.summarize(text)
-    
-    return jsonify(summary = result)
-
-
 if __name__=='__main__':
     app.run(host='0.0.0.0')
-    
-
-# Response is - 
-# {"framework": "flask is robust", "language": "hindi is nice"}    
