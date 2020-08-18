@@ -5,12 +5,10 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import com.thoughtleaf.textsumarizex.DocumentReaderUtil
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -24,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         button.setOnClickListener { view ->
-            openFile(view)
+            chooseFile(view)
         }
 
     }
@@ -45,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun openFile(view: View) {
+    fun chooseFile(view: View) {
 
         val mimeTypes = arrayOf(
                 "application/msword",
@@ -78,16 +76,7 @@ class MainActivity : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK && requestCode == OPEN_REQUEST_CODE) {
             val fileUri = resultData?.data!!
 
-            var docString : String = when (DocumentReaderUtil.getMimeType(fileUri, applicationContext)) {
-                "text/plain" -> DocumentReaderUtil.readTxtFromUri(fileUri, applicationContext)
-                "application/pdf" -> DocumentReaderUtil.readPdfFromUri(fileUri, applicationContext)
-                "application/msword" -> DocumentReaderUtil.readWordDocFromUri(fileUri, applicationContext)
-                "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ->
-                    DocumentReaderUtil.readWordDocFromUri(fileUri, applicationContext)
-                else -> ""
-            }
 
-            Log.i("docString", docString)
         }
     }
 
