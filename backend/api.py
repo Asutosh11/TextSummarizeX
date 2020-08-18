@@ -1,8 +1,8 @@
-from flask import Flask, request, redirect, url_for
-import smallModel, largeModel
+from flask import Flask, request
+import bertExtractiveSummarizer
 import fileReader
 import re
-
+from waitress import serve
 
 
 UPLOAD_FOLDER = '/uploads'
@@ -39,7 +39,7 @@ def upload_file():
                           
                 
                 stripped_text = raw_txt.strip().replace("\n","")
-                summary = largeModel.summarize(stripped_text)
+                summary = bertExtractiveSummarizer.summarize(stripped_text)
                 txt_no_special_chars_in_start = re.sub(r"^\W+", "", summary)
                 return txt_no_special_chars_in_start
         else:
@@ -51,4 +51,5 @@ def display():
     return "Looks like it works!"
 
 if __name__=='__main__':
-    app.run(host='0.0.0.0')
+    # app.run(host='0.0.0.0', threaded="true")
+    serve(app, host="0.0.0.0", port=5000, threads=8)

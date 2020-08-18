@@ -1,5 +1,6 @@
+waitress
 torch
-transformers
 Flask==1.0
 python-docx
 pdfminer.six
+bert-extractive-summarizer

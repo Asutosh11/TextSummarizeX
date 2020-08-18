@@ -1,10 +1,13 @@
 import torch
 from transformers import T5Tokenizer, T5ForConditionalGeneration
+from transformers import AutoTokenizer, AutoModelWithLMHead
 
 def summarize(text):
 
     model = T5ForConditionalGeneration.from_pretrained('t5-large')
     tokenizer = T5Tokenizer.from_pretrained('t5-large')
+    # tokenizer = AutoTokenizer.from_pretrained("soroush/t5-finetuned-lesson-summarizer")
+    # model = AutoModelWithLMHead.from_pretrained("soroush/t5-finetuned-lesson-summarizer")
     device = torch.device('cpu')
     
     tokenized_text = tokenizer.encode(text, return_tensors="pt").to(device)
