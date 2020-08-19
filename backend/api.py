@@ -2,7 +2,7 @@ from flask import Flask, request
 import bertExtractiveSummarizer
 import fileReader
 import re
-from waitress import serve
+from gevent.pywsgi import WSGIServer
 
 
 UPLOAD_FOLDER = '/uploads'
@@ -52,4 +52,5 @@ def display():
 
 if __name__=='__main__':
     # app.run(host='0.0.0.0', threaded="true")
-    serve(app, host="0.0.0.0", port=5000, threads=8)
+    http_server = WSGIServer(('127.0.0.1', 5000), app)
+    http_server.serve_forever()

@@ -1,4 +1,4 @@
-waitress
+gevent
 torch
 Flask==1.0
 python-docx
