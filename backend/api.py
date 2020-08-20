@@ -6,8 +6,10 @@ from gevent.pywsgi import WSGIServer
 
 
 UPLOAD_FOLDER = '/uploads'
+
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'doc', 'docx'}
 
 def allowed_file(filename):
@@ -52,5 +54,5 @@ def display():
 
 if __name__=='__main__':
     # app.run(host='0.0.0.0', threaded="true")
-    http_server = WSGIServer(('127.0.0.1', 5000), app)
+    http_server = WSGIServer(('127.0.0.1', 8000), app)
     http_server.serve_forever()
