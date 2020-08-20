@@ -8,21 +8,36 @@
     android:gravity="center_horizontal"
     >
 
-    <EditText
-        android:layout_weight="10"
-        android:id="@+id/editText"
+    <LinearLayout
+        android:background="@drawable/border_edittext"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="20dp"
-        android:background="@drawable/border_edittext"
-        android:backgroundTint="#fff"
-        android:ems="10"
-        android:gravity="top|left"
-        android:hint="Type something to summarize"
-        android:inputType="textPersonName"
-        android:padding="10dp"
-        android:scrollbars="vertical"
-        android:textSize="16sp"/>
+        android:layout_weight="10"
+        android:layout_margin="20dp">
+
+        <EditText
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/editText"
+            android:gravity="top|left"
+            android:hint="Type something to summarize"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:scrollbars="vertical"
+            android:textSize="16sp"/>
+
+        <Button
+            android:layout_marginTop="-40dp"
+            android:layout_height="40dp"
+            android:textColor="#686868"
+            android:background="#F1F1F1"
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:text="Submit" />
+
+    </LinearLayout>
 
     <Button
         android:textColor="#686868"
@@ -37,5 +52,6 @@
         android:layout_width="match_parent"
         android:layout_height="5dp"
         ></View>
-    
+
+
 </LinearLayout>
