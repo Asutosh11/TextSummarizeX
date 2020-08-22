@@ -51,6 +51,13 @@ def summary_from_url():
     url = req_data['url']
     text_from_webpage = urlParser.getTextFromURL(url)
     return summarize(text_from_webpage)
+
+
+@app.route('/summary_from_text', methods=['GET', 'POST'])
+def summary_from_text():
+    req_data = request.get_json(force=True)
+    text = req_data['text']
+    return summarize(text)
     
     
 def summarize(raw_txt):
