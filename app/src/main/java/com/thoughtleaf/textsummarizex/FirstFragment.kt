@@ -24,7 +24,7 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        button.setOnClickListener { view ->
+        btn_choose_doc.setOnClickListener { view ->
             chooseFile(view)
         }
     }
