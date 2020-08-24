@@ -64,7 +64,22 @@ def summarize(raw_txt):
     stripped_text = raw_txt.strip().replace("\n","")
     summary = bertExtractiveSummarizer.summarize(stripped_text)
     txt_no_special_chars_in_start = re.sub(r"^\W+", "", summary)
-    return txt_no_special_chars_in_start
+    txt_broken_into_paras = makeParagraph(3, txt_no_special_chars_in_start)
+    return txt_broken_into_paras
+
+def makeParagraph(full_stops_in_one_para, input_string):
+    number_of_fullstops = 0
+    a = ''
+    for i in input_string:
+        if i=='.':
+            number_of_fullstops = number_of_fullstops + 1
+            a = a+i
+            if(number_of_fullstops == full_stops_in_one_para):
+                a = a + ' \n\n'
+                number_of_fullstops = 0
+        else:
+            a+=i
+    return(a)
 
 
 
