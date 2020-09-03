@@ -1,12 +1,12 @@
-package com.thoughtleaf.textsummarizex.ui
+package com.thoughtleaf.textsummarizex.ui.adapter
 
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.thoughtleaf.textsummarizex.FirstFragment
+import com.thoughtleaf.textsummarizex.ui.fragment.FirstFragment
 import com.thoughtleaf.textsummarizex.R
-import com.thoughtleaf.textsummarizex.SecondFragment
+import com.thoughtleaf.textsummarizex.ui.fragment.SecondFragment
 
 private val TAB_TITLES = arrayOf(R.string.tab_text_1, R.string.tab_text_2)
 
