@@ -1,0 +1,103 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:8898325395216736440",
+      "lastPropertyId": "5:2946046403948517768",
+      "name": "MySummariesDAO",
+      "properties": [
+        {
+          "id": "1:1346327019648767545",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "4:2205795555910481259",
+          "name": "summary",
+          "type": 9
+        },
+        {
+          "id": "5:2946046403948517768",
+          "name": "timeStamp",
+          "type": 6,
+          "flags": 2
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:380769913011986738",
+      "lastPropertyId": "2:9138038439322755985",
+      "name": "FileRequestDAO",
+      "properties": [
+        {
+          "id": "1:7747976564246083495",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:9138038439322755985",
+          "name": "file_extension",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:555211515211521997",
+      "lastPropertyId": "2:3558460764722268980",
+      "name": "TextRequestDAO",
+      "properties": [
+        {
+          "id": "1:5032873103699335495",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3558460764722268980",
+          "name": "text",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:6708045517258659760",
+      "lastPropertyId": "2:2297989097582275057",
+      "name": "UrlRequestDAO",
+      "properties": [
+        {
+          "id": "1:6631829396930113441",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:2297989097582275057",
+          "name": "url",
+          "type": 9
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "4:6708045517258659760",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    6110066034886995754,
+    328834417365956875
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}

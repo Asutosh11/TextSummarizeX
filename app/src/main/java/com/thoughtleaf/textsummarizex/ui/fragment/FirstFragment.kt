@@ -9,19 +9,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import com.thoughtleaf.textsummarizex.R
-import com.thoughtleaf.textsummarizex.ui.viewmodel.FirstFragmentVM
+import com.thoughtleaf.textsummarizex.data.service.ForegroundService
+import com.thoughtleaf.textsummarizex.model.UrlRequestDAO
 import com.thoughtleaf.textsummarizex.util.AppConstantsUtil
 import com.thoughtleaf.textsummarizex.util.DocumentReaderUtil
+import com.thoughtleaf.textsummarizex.util.ObjectBoxUtil
+import io.objectbox.TxCallback
 import kotlinx.android.synthetic.main.fragment_first.*
-import java.io.File
 
 class FirstFragment : Fragment() {
 
-    private val viewModel: FirstFragmentVM by viewModels()
     val OPEN_REQUEST_CODE = 122
-    var docFileExtension : AppConstantsUtil.Companion.DocumentType ?= null
+    var docFileExtension : String ?= null
     lateinit var activityContext: Context
 
     override fun onCreateView (inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -36,8 +36,17 @@ class FirstFragment : Fragment() {
         }
 
         btn_submit_url.setOnClickListener { view ->
-            if(!et_enter_url.text?.toString()?.isEmpty()!!){
-
+            if(!et_enter_url.text?.toString()?.isEmpty()!! && ObjectBoxUtil.boxStore != null){
+                ObjectBoxUtil.boxStore.runInTxAsync(object:Runnable {
+                    public override fun run() {
+                        UrlRequestDAO.saveUrl(et_enter_url.text.toString())
+                    }
+                }, object: TxCallback<Void> {
+                    override fun txFinished(result: Void?, error: Throwable?) {
+                        // start the foreground service
+                        ForegroundService.startService(activityContext.applicationContext, "Summarizing Data from URL", AppConstantsUtil.API_TYPE_SUMMARIZE_URL)
+                    }
+                })
             }
         }
 
@@ -83,15 +92,15 @@ class FirstFragment : Fragment() {
             val fileUri = resultData?.data!!
 
             docFileExtension= when (DocumentReaderUtil.getMimeType(fileUri, activityContext)) {
-                "text/plain" -> AppConstantsUtil.Companion.DocumentType.TXT()
-                "application/pdf" -> AppConstantsUtil.Companion.DocumentType.PDF()
-                "application/msword" -> AppConstantsUtil.Companion.DocumentType.DOC()
-                "application/vnd.openxmlformats-officedocument.wordprocessingml.document" -> AppConstantsUtil.Companion.DocumentType.DOCX()
+                "text/plain" -> AppConstantsUtil.Companion.DOCUMENT_TYPE_TXT
+                "application/pdf" -> AppConstantsUtil.Companion.DOCUMENT_TYPE_PDF
+                "application/msword" -> AppConstantsUtil.Companion.DOCUMENT_TYPE_DOC
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document" -> AppConstantsUtil.Companion.DOCUMENT_TYPE_DOCX
                 else -> null
             }
 
             docFileExtension.let {
-                viewModel.summarizeFile(File(fileUri?.path), docFileExtension.toString())
+
             }
         }
     }
