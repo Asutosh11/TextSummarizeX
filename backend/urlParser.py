@@ -2,12 +2,21 @@ from bs4 import BeautifulSoup
 from bs4.element import Comment
 from urllib.request import Request, urlopen
 
+# def tag_visible(element):
+#     if element.parent.name in ['style', 'script', 'head', 'title', 'meta', '[document]', 'ul', 'li', 'a', 'h1', 'ol', 'footer']:
+#         return False
+#     if isinstance(element, Comment):
+#         return False
+#     return True
+
 def tag_visible(element):
-    if element.parent.name in ['style', 'script', 'head', 'title', 'meta', '[document]']:
+    if element.parent.name in ['p', 'span']:
+        return True
+    if element.parent.name in ['style', 'script', 'head', 'title', 'meta', '[document]', 'ul', 'li', 'a', 'h1', 'ol', 'footer']:
         return False
     if isinstance(element, Comment):
         return False
-    return True
+    return False
 
 
 # this is the function that has to be called for get text from a webpage URL
@@ -15,10 +24,13 @@ def tag_visible(element):
 def getTextFromURL(url):
     hdr = {'User-Agent': 'Mozilla/5.0'}
     req = Request(url,headers=hdr)
-    page = urlopen(req)
-    soup = BeautifulSoup(page)
-    texts = soup.prettify()
-    texts = soup.findAll(text=True)
-    visible_texts = filter(tag_visible, texts)  
-    final_text = u" ".join(t.strip() for t in visible_texts)
-    return (final_text.lstrip())
+    try:
+        page = urlopen(req)
+        soup = BeautifulSoup(page)
+        texts = soup.prettify()
+        texts = soup.findAll(text=True)
+        visible_texts = filter(tag_visible, texts)  
+        final_text = u" ".join(t.strip() for t in visible_texts)
+        return (final_text.lstrip())
+    except:
+        return""  
