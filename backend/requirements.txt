@@ -5,4 +5,4 @@ Flask==1.0
 python-docx
 pdfminer.six
 bert-extractive-summarizer
-beautifulsoup4
+trafilatura
