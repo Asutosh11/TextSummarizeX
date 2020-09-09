@@ -4,9 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.thoughtleaf.textsummarizex.data.db.MySummariesDAO
 import com.thoughtleaf.textsummarizex.data.retrofit.ApiClient
 import com.thoughtleaf.textsummarizex.data.service.ForegroundService
-import com.thoughtleaf.textsummarizex.model.FileRequestDAO
-import com.thoughtleaf.textsummarizex.model.TextRequestDAO
-import com.thoughtleaf.textsummarizex.model.UrlRequest
+import com.thoughtleaf.textsummarizex.model.*
 import com.thoughtleaf.textsummarizex.util.NetworkUtil
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,7 +21,7 @@ class ApiRepository {
 
     var foregroundService: ForegroundService? = null
 
-    fun summarizeFile(fileRequest: FileRequestDAO){
+    fun summarizeFile(fileRequest: FileRequest){
 
         apiClient.getClient.summarizeFile(fileRequest)
             .enqueue(object : Callback<String> {
@@ -59,7 +57,7 @@ class ApiRepository {
             })
     }
 
-    fun summarizeText(textRequest: TextRequestDAO){
+    fun summarizeText(textRequest: TextRequest){
 
         apiClient.getClient.summarizeText(textRequest)
             .enqueue(object : Callback<String> {

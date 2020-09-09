@@ -23,7 +23,7 @@ def upload_file():
         
         file = request.files.get('file')        
         fileExtension = request.form.get('file_extension')
-        fraction_of_original_text = request.form.get('fraction_of_original_text')
+        fraction_of_original_text_in_summary = request.form.get('fraction_of_original_text_in_summary')
         
         if file and allowed_file(file.filename):
             
@@ -40,7 +40,7 @@ def upload_file():
                 elif(fileExtension == 'doc'):
                     raw_txt = fileReader.readDocx(file)
                           
-                return summarize(raw_txt, fraction_of_original_text)
+                return summarize(raw_txt, fraction_of_original_text_in_summary)
               
         else:
             return "null"
@@ -50,22 +50,22 @@ def upload_file():
 def summary_from_url():
     req_data = request.get_json(force=True)
     url = req_data['url']
-    fraction_of_original_text = req_data['fraction_of_original_text']
+    fraction_of_original_text_in_summary = req_data['fraction_of_original_text_in_summary']
     text_from_webpage = urlParser.getTextFromURL(url)
-    return summarize(text_from_webpage, fraction_of_original_text)
+    return summarize(text_from_webpage, fraction_of_original_text_in_summary)
 
 
 @app.route('/summary_from_text', methods=['GET', 'POST'])
 def summary_from_text():
     req_data = request.get_json(force=True)
     text = req_data['text']
-    fraction_of_original_text = req_data['fraction_of_original_text']
-    return summarize(text, fraction_of_original_text)
+    fraction_of_original_text_in_summary = req_data['fraction_of_original_text_in_summary']
+    return summarize(text, fraction_of_original_text_in_summary)
     
     
-def summarize(raw_txt, fraction_of_original_text):
+def summarize(raw_txt, fraction_of_original_text_in_summary):
     stripped_text = raw_txt.strip().replace("\n","")
-    summary = bertExtractiveSummarizer.summarize(stripped_text, fraction_of_original_text)
+    summary = bertExtractiveSummarizer.summarize(stripped_text, fraction_of_original_text_in_summary)
     txt_no_special_chars_in_start = re.sub(r"^\W+", "", summary)
     txt_broken_into_paras = makeParagraph(3, txt_no_special_chars_in_start)
     return txt_broken_into_paras

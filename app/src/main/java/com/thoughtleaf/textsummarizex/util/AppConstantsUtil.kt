@@ -13,6 +13,9 @@ class AppConstantsUtil {
         val API_TYPE_SUMMARIZE_FILE: String = "summarizeFile"
         val API_TYPE_SUMMARIZE_TEXT: String = "summarizeText"
         val API_TYPE_SUMMARIZE_URL: String = "summarizeUrl"
+
+        val FRACTION_OF_ORIGINAL_TEXT_IN_SUMMARY: Float = 0.3F
     }
+
 
 }

@@ -16,6 +16,7 @@ import com.thoughtleaf.textsummarizex.model.UrlRequest
 import com.thoughtleaf.textsummarizex.model.UrlRequestDAO
 import com.thoughtleaf.textsummarizex.ui.activity.MainActivity
 import com.thoughtleaf.textsummarizex.ui.repository.ApiRepository
+import com.thoughtleaf.textsummarizex.util.AppConstantsUtil
 import com.thoughtleaf.textsummarizex.util.AppConstantsUtil.Companion.API_TYPE_SUMMARIZE_FILE
 import com.thoughtleaf.textsummarizex.util.AppConstantsUtil.Companion.API_TYPE_SUMMARIZE_TEXT
 import com.thoughtleaf.textsummarizex.util.AppConstantsUtil.Companion.API_TYPE_SUMMARIZE_URL
@@ -114,7 +115,7 @@ class ForegroundService : LifecycleService(), ApiRepository.callback  {
                 if (urlRequestList != null && urlRequestList.size > 0) {
                     val urlRequestObject =
                         urlRequestList.get(UrlRequestDAO.getAllSavedURLs().size - 1)
-                    apiRepository.summarizeUrl(UrlRequest(urlRequestObject?.url ?: ""))
+                    apiRepository.summarizeUrl(UrlRequest(urlRequestObject?.url ?: "", AppConstantsUtil.FRACTION_OF_ORIGINAL_TEXT_IN_SUMMARY))
                 }
             }
 
