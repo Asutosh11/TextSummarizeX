@@ -48,7 +48,8 @@ class FirstFragment : Fragment() {
                 }, object: TxCallback<Void> {
                     override fun txFinished(result: Void?, error: Throwable?) {
                         // start the foreground service
-                        ForegroundService.startService(activityContext.applicationContext, "Summarizing Data from URL", AppConstantsUtil.API_TYPE_SUMMARIZE_URL)
+                        AppConstantsUtil.TYPE_OF_API_TO_FIRE = AppConstantsUtil.API_TYPE_SUMMARIZE_URL
+                        showConfirmDialog()
                     }
                 })
             }
@@ -82,6 +83,7 @@ class FirstFragment : Fragment() {
             }
             false
         }
+
     }
 
     fun chooseFile(view: View) {
@@ -151,6 +153,15 @@ class FirstFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         activityContext = context
+    }
+
+    fun showConfirmDialog(){
+        val fm = activity?.supportFragmentManager
+        val dialogFragment = ConfirmDialogFragment()
+        val args = Bundle()
+        args.putString("type_of_api", "add_product")
+        dialogFragment.setArguments(args)
+        dialogFragment.show(fm!!, "dialog_fragment")
     }
 
 }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        />
+
+    <TextView
+        android:id="@+id/warning_tv"
+        android:padding="20dp"
+        android:text="This functionality uses scrapping of data from the entered URL before summarizing it. You acknowledge that the data obtianed through this app is only for your personal reading and not for any profitable or illegal/criminal activity."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        />
+
+    <TextView
+        android:id="@+id/strength_text_tv"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textStyle="bold"
+        android:text="Summary Strength: Medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        />
+
+    <SeekBar
+        android:thumb="@drawable/seek_bar_circle"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/seek_bar"
+        style="@style/SeekBarWithoutSteps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:min="0"
+        android:max="2"
+        android:progress="1"/>
+
+    <Button
+        android:id="@+id/confirm_btn"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/border_edittext"
+        android:backgroundTint="@color/colorPrimary"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="Confirm &amp; Summarize"
+        android:textColor="@color/white" />
+
+</LinearLayout>

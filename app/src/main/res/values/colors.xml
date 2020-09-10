@@ -6,4 +6,5 @@
     <color name="backgroundBlue">#2980B9</color>
     <color name="btn_color_first_fragment">#4A4A4A</color>
     <color name="doc_selected_green">#249F24</color>
+    <color name="white">#fff</color>
 </resources>

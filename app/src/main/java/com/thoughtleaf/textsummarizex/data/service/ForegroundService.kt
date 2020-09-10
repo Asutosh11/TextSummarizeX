@@ -36,6 +36,7 @@ class ForegroundService : LifecycleService(), ApiRepository.callback  {
             val startIntent = Intent(context, ForegroundService::class.java)
             startIntent.putExtra("inputExtra", message)
             ContextCompat.startForegroundService(context, startIntent)
+            AppConstantsUtil.IS_FORGROUND_SERVICE_RUNNING = true
         }
 
         fun stopService(context: Context) {
@@ -128,5 +129,6 @@ class ForegroundService : LifecycleService(), ApiRepository.callback  {
         stopSelf()
         val mNotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         mNotificationManager.notify(0, createNotification(message))
+        AppConstantsUtil.IS_FORGROUND_SERVICE_RUNNING = false
     }
 }

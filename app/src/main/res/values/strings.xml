@@ -15,4 +15,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="summary_strength_low">Summary Strength: Low</string>
+    <string name="summary_strength_medium">Summary Strength: Medium</string>
+    <string name="summary_strength_high">Summary Strength: High</string>
 </resources>
