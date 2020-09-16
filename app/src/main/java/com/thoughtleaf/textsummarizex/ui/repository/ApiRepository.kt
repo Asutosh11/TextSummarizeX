@@ -1,10 +1,12 @@
 package com.thoughtleaf.textsummarizex.ui.repository
 
-import androidx.lifecycle.MutableLiveData
-import com.thoughtleaf.textsummarizex.data.db.MySummariesDAO
+import com.thoughtleaf.textsummarizex.data.dao.MySummariesDAO
 import com.thoughtleaf.textsummarizex.data.retrofit.ApiClient
 import com.thoughtleaf.textsummarizex.data.service.ForegroundService
-import com.thoughtleaf.textsummarizex.model.*
+import com.thoughtleaf.textsummarizex.data.model.FileRequest
+import com.thoughtleaf.textsummarizex.data.model.TextRequest
+import com.thoughtleaf.textsummarizex.data.model.UrlRequest
+import com.thoughtleaf.textsummarizex.util.AppConstantsUtil
 import com.thoughtleaf.textsummarizex.util.NetworkUtil
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,13 +23,13 @@ class ApiRepository {
 
     var foregroundService: ForegroundService? = null
 
-    fun summarizeFile(fileRequest: FileRequest){
+    fun summarizeFile(fileRequest: FileRequest, documentType: String){
 
         apiClient.getClient.summarizeFile(fileRequest)
             .enqueue(object : Callback<String> {
 
             override fun onResponse(call: Call<String>?, response: Response<String>?) {
-                MySummariesDAO.saveSummarizedText(response.toString())
+                MySummariesDAO.saveSummarizedText(response.toString(), AppConstantsUtil.DOCUMENT_TYPE_PDF)
                 foregroundService?.closeForgroundService("File summarized. Go to 'Your Summaries'")
             }
 
@@ -45,7 +47,7 @@ class ApiRepository {
             .enqueue(object : Callback<String> {
 
                 override fun onResponse(call: Call<String>?, response: Response<String>?) {
-                    MySummariesDAO.saveSummarizedText(response.toString())
+                    MySummariesDAO.saveSummarizedText(response.toString(), AppConstantsUtil.DOCUMENT_TYPE_WEB)
                     foregroundService?.closeForgroundService("Web Page summarized. Go to 'Your Summaries'")
                 }
 
@@ -63,7 +65,7 @@ class ApiRepository {
             .enqueue(object : Callback<String> {
 
                 override fun onResponse(call: Call<String>?, response: Response<String>?) {
-                    MySummariesDAO.saveSummarizedText(response.toString())
+                    MySummariesDAO.saveSummarizedText(response.toString(), AppConstantsUtil.DOCUMENT_TYPE_TXT)
                     foregroundService?.closeForgroundService("Text summarized. Go to 'Your Summaries'")
                 }
 

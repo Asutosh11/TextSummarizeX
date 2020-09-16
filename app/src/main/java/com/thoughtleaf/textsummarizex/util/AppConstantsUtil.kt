@@ -8,6 +8,7 @@ class AppConstantsUtil {
         val DOCUMENT_TYPE_PDF = "pdf"
         val DOCUMENT_TYPE_DOC = "doc"
         val DOCUMENT_TYPE_DOCX = "docx"
+        val DOCUMENT_TYPE_WEB= "web"
 
         var TYPE_OF_API_TO_FIRE: String? = null
         val API_TYPE_SUMMARIZE_FILE: String = "summarizeFile"

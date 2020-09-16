@@ -18,4 +18,5 @@
     <string name="summary_strength_low">Summary Strength: Low</string>
     <string name="summary_strength_medium">Summary Strength: Medium</string>
     <string name="summary_strength_high">Summary Strength: High</string>
+    <string name="my_summaries">My Summaries</string>
 </resources>

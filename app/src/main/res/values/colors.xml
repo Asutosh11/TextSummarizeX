@@ -7,4 +7,9 @@
     <color name="btn_color_first_fragment">#4A4A4A</color>
     <color name="doc_selected_green">#249F24</color>
     <color name="white">#fff</color>
+    <color name="grey">#EDEDED</color>
+    <color name="color_for_txt_source">#FF5722</color>
+    <color name="colour_for_web_source">#00BCD4</color>
+    <color name="colour_for_file_source">#249F24</color>
+    <color name="dark_text">#1C1C1C</color>
 </resources>

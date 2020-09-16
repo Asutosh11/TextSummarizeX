@@ -7,6 +7,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -33,17 +35,16 @@
                     android:textSize="16sp" />
 
                 <Button
-                    android:layout_gravity="bottom"
                     android:id="@+id/btn_submit_url"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:layout_gravity="bottom"
                     android:background="#F1F1F1"
                     android:drawableEnd="@drawable/ic_language_black_18dp"
-                    android:drawableTint="#00BCD4"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:text="Summarize Webpage"
-                    android:textColor="@color/btn_color_first_fragment" />
+                    android:textColor="@color/dark_text" />
 
             </FrameLayout>
 
@@ -74,11 +75,10 @@
                     android:layout_height="40dp"
                     android:background="#F1F1F1"
                     android:drawableEnd="@drawable/ic_spellcheck_black_18dp"
-                    android:drawableTint="#FF5722"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:text="Summarize Text"
-                    android:textColor="@color/btn_color_first_fragment" />
+                    android:textColor="@color/dark_text" />
 
             </FrameLayout>
 
@@ -92,7 +92,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:text="Choose a Document to Summarize"
-                android:textColor="@color/btn_color_first_fragment" />
+                android:textColor="@color/dark_text" />
 
         </LinearLayout>
 

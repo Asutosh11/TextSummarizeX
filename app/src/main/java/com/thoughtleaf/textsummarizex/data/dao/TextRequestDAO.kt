@@ -1,5 +1,6 @@
 package com.thoughtleaf.textsummarizex.model
 
+import com.thoughtleaf.textsummarizex.data.model.TextRequest
 import com.thoughtleaf.textsummarizex.util.ObjectBoxUtil
 import io.objectbox.Box
 import io.objectbox.annotation.Entity

@@ -12,7 +12,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleService
 import com.thoughtleaf.textsummarizex.R
-import com.thoughtleaf.textsummarizex.model.UrlRequest
+import com.thoughtleaf.textsummarizex.data.model.UrlRequest
 import com.thoughtleaf.textsummarizex.model.UrlRequestDAO
 import com.thoughtleaf.textsummarizex.ui.activity.MainActivity
 import com.thoughtleaf.textsummarizex.ui.repository.ApiRepository
@@ -116,7 +116,12 @@ class ForegroundService : LifecycleService(), ApiRepository.callback  {
                 if (urlRequestList != null && urlRequestList.size > 0) {
                     val urlRequestObject =
                         urlRequestList.get(UrlRequestDAO.getAllSavedURLs().size - 1)
-                    apiRepository.summarizeUrl(UrlRequest(urlRequestObject?.url ?: "", AppConstantsUtil.FRACTION_OF_ORIGINAL_TEXT_IN_SUMMARY))
+                    apiRepository.summarizeUrl(
+                        UrlRequest(
+                            urlRequestObject?.url ?: "",
+                            AppConstantsUtil.FRACTION_OF_ORIGINAL_TEXT_IN_SUMMARY
+                        )
+                    )
                 }
             }
 

@@ -1,4 +1,4 @@
-package com.thoughtleaf.textsummarizex.model
+package com.thoughtleaf.textsummarizex.data.model
 
 import java.io.File
 

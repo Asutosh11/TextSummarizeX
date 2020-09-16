@@ -1,5 +1,6 @@
 package com.thoughtleaf.textsummarizex.model
 
+import com.thoughtleaf.textsummarizex.data.model.FileRequest
 import com.thoughtleaf.textsummarizex.util.ObjectBoxUtil
 import io.objectbox.Box
 import io.objectbox.annotation.Entity
@@ -18,9 +19,12 @@ class FileRequestDAO {
 
         fun saveSummarizedText(fileRequest: FileRequest){
             val itemsListBox: Box<FileRequestDAO> = ObjectBoxUtil.boxStore.boxFor()
-            itemsListBox.put(FileRequestDAO(fileRequest.file, fileRequest.file_extension))
+            val fileRequestDAO:FileRequestDAO = FileRequestDAO()
+            fileRequestDAO.file = fileRequest.file
+            fileRequestDAO.file_extension = fileRequest.file_extension
+            itemsListBox.put(fileRequestDAO)
         }
     }
 
-    constructor(file: File, fileExtension: String)
+    constructor()
 }
