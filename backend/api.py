@@ -87,6 +87,6 @@ def makeParagraph(full_stops_in_one_para, input_string):
 
 
 if __name__=='__main__':
-    # app.run(host='0.0.0.0', threaded="true")
-    http_server = WSGIServer(('127.0.0.1', 8000), app)
-    http_server.serve_forever()
+    app.run(host='0.0.0.0', threaded="true")
+    # http_server = WSGIServer(('127.0.0.1', 8000), app)
+    # http_server.serve_forever()
