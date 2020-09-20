@@ -4,5 +4,4 @@ torch
 Flask==1.0
 python-docx
 pdfminer.six
-bert-extractive-summarizer
 trafilatura
