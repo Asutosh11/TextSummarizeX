@@ -4,6 +4,9 @@ import fileReader, urlParser
 import re
 from gevent.pywsgi import WSGIServer
 
+import logging
+print(logging.__file__)
+
 
 UPLOAD_FOLDER = '/uploads'
 
@@ -24,26 +27,22 @@ def upload_file():
         file = request.files.get('file')        
         fileExtension = request.form.get('file_extension')
         fraction_of_original_text_in_summary = request.form.get('fraction_of_original_text_in_summary')
+ 
+        if(fileExtension == 'txt'):
+            raw_txt = fileReader.readTxt(file)
+            raw_txt = raw_txt.decode()
         
-        if file and allowed_file(file.filename):
-            
-                if(fileExtension == 'txt'):
-                    raw_txt = fileReader.readTxt(file)
-                    raw_txt = raw_txt.decode()
-                
-                elif(fileExtension == 'pdf'):
-                    raw_txt = fileReader.readPdf(file)
-                
-                elif(fileExtension == 'docx'):
-                    raw_txt = fileReader.readDocx(file)
-                
-                elif(fileExtension == 'doc'):
-                    raw_txt = fileReader.readDocx(file)
-                          
-                return summarize(raw_txt, fraction_of_original_text_in_summary)
-              
-        else:
-            return "null"
+        elif(fileExtension == 'pdf'):
+            raw_txt = fileReader.readPdf(file)
+        
+        elif(fileExtension == 'docx'):
+            raw_txt = fileReader.readDocx(file)
+        
+        elif(fileExtension == 'doc'):
+            raw_txt = fileReader.readDocx(file)
+                  
+        return summarize(raw_txt, fraction_of_original_text_in_summary)
+      
         
         
 @app.route('/summary_from_url', methods=['GET', 'POST'])
@@ -87,6 +86,4 @@ def makeParagraph(full_stops_in_one_para, input_string):
 
 
 if __name__=='__main__':
-    app.run(host='0.0.0.0', threaded="true")
-    # http_server = WSGIServer(('127.0.0.1', 8000), app)
-    # http_server.serve_forever()
+    app.run()
