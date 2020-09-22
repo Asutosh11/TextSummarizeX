@@ -36,7 +36,7 @@ iv. CMD - command to run the app, in my case to run api.py
 5. copy the id of the docker image you just built, it will be listed on the screen
 6. ```mkdir ~/docker-images```
 7. ```cd ~/docker-images```
-8.```chmod 777 ./```
+8. ```chmod 777 ./```
 9. ```sudo docker save <docker_img_id_of_ur_file_u_just_copied> -o ./<new_filename>```
 
 Now you have a docker image ready to be used
