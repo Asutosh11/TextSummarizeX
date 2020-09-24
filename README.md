@@ -18,7 +18,7 @@ CMD gunicorn api:app -k gevent --worker-connections 1000
 ```
 
 ```
-< Don't copy this>
+<Don't copy this>
 
 above params explained::
 i. backend - is the folder for the python project
@@ -28,13 +28,19 @@ iii. CMD - command to run the app, in my case to run api.py
 </>
 ```
 
-3. ```sudo docker build -t textsummarizex:1.10 .```
+3. ```sudo docker build -t textsummarizex:1.16 .```
 4. ```docker images``` 
-5. copy the name and tag of the docker image you just built, it will be listed on the screen
-6. ```sudo docker run -it textsummarizex:1.10```
+5. Copy the name and tag of the docker image you just built, it will be listed on the screen. In our case now, it is <b>textsummarizex:1.16</b> 
+6. ```sudo docker run -it textsummarizex:1.16```
 
 
-Now you have a docker image ready and running on ur local. Need to push that to docker hub, so that you can pull it from a linux server and run it
-
-
+<b>Now you have a docker image ready and running on ur local. 
  
+ Need to push that to docker hub, so that you can pull it from a linux server and run it
+</b>
+
+7. ```sudo -s```
+8. ```docker login```
+9. ```docker images```
+10. ```docker tag ea41543608f0 thoughtleaf/textsummarizex:1.16```
+11. ```docker push thoughtleaf/textsummarizex```
