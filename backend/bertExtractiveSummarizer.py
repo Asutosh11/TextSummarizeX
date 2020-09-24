@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
+
 from summarizer import Summarizer
 
 def summarize(text, fraction_of_original_text_in_summary):

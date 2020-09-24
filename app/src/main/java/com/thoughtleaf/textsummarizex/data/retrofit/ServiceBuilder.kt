@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 class ApiClient {
 
-    private val BASE_URL = "http://192.168.1.6:8000"
+    private val BASE_URL = "http://127.0.0.1:8000"
     val getClient: SummaryService
         get() {
             val gson = GsonBuilder()

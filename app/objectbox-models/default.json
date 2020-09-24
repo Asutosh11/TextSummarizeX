@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:8898325395216736440",
-      "lastPropertyId": "5:2946046403948517768",
+      "lastPropertyId": "7:7301959071153569337",
       "name": "MySummariesDAO",
       "properties": [
         {
@@ -24,6 +24,17 @@
           "name": "timeStamp",
           "type": 6,
           "flags": 2
+        },
+        {
+          "id": "6:1241559381753431216",
+          "name": "isRead",
+          "type": 1,
+          "flags": 2
+        },
+        {
+          "id": "7:7301959071153569337",
+          "name": "summarizedFrom",
+          "type": 9
         }
       ],
       "relations": []

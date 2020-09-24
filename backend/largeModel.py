@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
+
 import torch
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 from transformers import AutoTokenizer, AutoModelWithLMHead
