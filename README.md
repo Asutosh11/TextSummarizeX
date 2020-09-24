@@ -33,11 +33,7 @@ iii. CMD - command to run the app, in my case to run api.py
 5. Copy the name and tag of the docker image you just built, it will be listed on the screen. In our case now, it is <b>textsummarizex:1.16</b> 
 6. ```sudo docker run -it textsummarizex:1.16```
 
-
-<b>Now you have a docker image ready and running on ur local. 
- 
- Need to push that to docker hub, so that you can pull it from a linux server and run it
-</b>
+<b>Now you have a docker image ready and running on ur local.<br>Need to push that to docker hub, so that you can pull it from a linux server and run it</b>
 
 7. ```sudo -s```
 8. ```docker login```
