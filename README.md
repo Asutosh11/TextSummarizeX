@@ -13,7 +13,7 @@ gunicorn -b 0.0.0.0:4400 -w=2 wsgi:app
 <h3>How to make the docker image and run it</h3>
 
 
-1. Go to your app directory
+1. Go to your app directory.
 2. make a file named DockerFile with these contents - 
 
 ```bash
@@ -38,35 +38,38 @@ iii. CMD - command to run the app, in my case to run api.py
 </>
 ```
 
-3. ```bash 
-   sudo docker build -t textsummarizex:1.16 .
+Now open terminal and enter these commands
+
+```bash 
+sudo docker build -t textsummarizex:1.16 .
    ```
-4. ```bash 
-   docker images
+```bash 
+docker images
    ``` 
-5. Copy the name and tag of the docker image you just built, it will be listed on the screen. In our case now, it is <b>textsummarizex:1.16</b> 
-6. ```bash
-   sudo docker run -it textsummarizex:1.16
+Copy the name and tag of the docker image you just built, it will be listed on the screen. In our case now, it is <b>textsummarizex:1.16</b> 
+```bash
+sudo docker run -it textsummarizex:1.16
    ```
 
 <b>Now you have a docker image ready and running on ur local.<br>Need to push that to docker hub, so that you can pull it from a linux server and run it</b>
 
-7. ```bash 
-   sudo -s 
-   ```
-8. ```bash 
-   docker login
-   ```
-9. ```bash 
-   docker images
+
+```bash 
+sudo -s 
    ```
    
-10.
+```bash 
+docker login
+   ```
+   
+```bash 
+docker images
+   ```
+   
 ```bash
 docker tag ea41543608f0 thoughtleaf/textsummarizex:1.16 
 ```
    
-11. 
 ```bash 
 docker push thoughtleaf/textsummarizex
 ```
