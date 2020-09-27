@@ -1,4 +1,5 @@
 # TextSummarizeX
+<br>
 
 <h3>How to run the app as prod app locally using gunicorn</h3>
 
@@ -9,6 +10,7 @@ or
 ```bash
 gunicorn -b 0.0.0.0:4400 -w=2 wsgi:app
 ```
+<br>
 
 <h3>How to make the docker image and run it</h3>
 
