@@ -1,6 +1,6 @@
 <h2>TextSummarizeX</h2>
 
-<h3>How to run the app as prod app locally using gunicorn</h3>
+<h3>How to run the Flask app as prod locally using gunicorn</h3>
 
 ```bash
 gunicorn --bind 127.0.0.1:4400  --workers=2 wsgi:app
@@ -10,7 +10,7 @@ gunicorn --bind 127.0.0.1:4400  --workers=2 wsgi:app
 gunicorn -b 0.0.0.0:4400 -w=2 wsgi:app
 ```
 
-<h3>How to make the docker image and run it</h3>
+<h3>Dockerize your Flask app</h3>
 
 
 1. Go to your app directory.
