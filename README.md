@@ -1,16 +1,14 @@
-# TextSummarizeX
-<br>
+<h2>TextSummarizeX</h2>
 
 <h3>How to run the app as prod app locally using gunicorn</h3>
 
 ```bash
 gunicorn --bind 127.0.0.1:4400  --workers=2 wsgi:app
 ```
-or
+&nbsp;or
 ```bash
 gunicorn -b 0.0.0.0:4400 -w=2 wsgi:app
 ```
-<br>
 
 <h3>How to make the docker image and run it</h3>
 
@@ -74,4 +72,11 @@ docker tag ea41543608f0 thoughtleaf/textsummarizex:1.16
    
 ```bash 
 docker push thoughtleaf/textsummarizex
+```
+<br>
+
+<h3>How to delete all Docker images in the system?</h3>
+
+```bash 
+docker system prune -a
 ```
