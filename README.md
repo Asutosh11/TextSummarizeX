@@ -48,7 +48,7 @@ docker images
    ``` 
 Copy the name and tag of the docker image you just built, it will be listed on the screen. In our case now, it is <b>textsummarizex:1.16</b> 
 ```bash
-sudo docker run -it textsummarizex:1.16
+sudo docker run -it -p 8000:8000 textsummarizex:1.16
    ```
 
 4. Now you have a docker image ready and running on ur local.<br>Need to push that to docker hub, so that you can pull it from a linux server and run it
