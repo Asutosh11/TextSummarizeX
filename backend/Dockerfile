@@ -5,4 +5,4 @@ COPY . /backend
 WORKDIR /backend
 RUN pip3 install -r requirements.txt
 EXPOSE 8000
-CMD gunicorn --bind 0.0.0.0:8000 wsgi:app -k gevent --worker-connections 1000 --workers=4
+CMD gunicorn --timeout 1000 --workers 1 --threads 4 --log-level debug --bind 0.0.0.0:8000 wsgi:app
