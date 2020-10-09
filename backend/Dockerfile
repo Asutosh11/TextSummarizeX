@@ -5,4 +5,5 @@ COPY . /backend
 WORKDIR /backend
 RUN pip3 install -r requirements.txt
 EXPOSE 8000
-CMD gunicorn --timeout 1000 --workers 1 --threads 4 --log-level debug --bind 0.0.0.0:8000 wsgi:app
+ENTRYPOINT ["gunicorn"]
+CMD ["-w", "4", "-t", "10000", "-b", "0.0.0.0:8000", "wsgi:app"]

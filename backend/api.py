@@ -2,13 +2,12 @@
 # -*- coding: utf-8 -*- 
 from flask import Flask, request
 import bertExtractiveSummarizer
-import fileReader, urlParser
+import fileReader
+import urlParser
 import re
-from gevent.pywsgi import WSGIServer
 
 import logging
 print(logging.__file__)
-
 
 UPLOAD_FOLDER = '/uploads'
 
