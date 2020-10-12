@@ -13,7 +13,7 @@ class CoreferenceHandler(SentenceHandler):
         self.nlp = spacy.load(spacy_model)
         neuralcoref.add_to_pipe(self.nlp, greedyness=greedyness)
 
-    def process(self, body: str, min_length: int = 40, max_length: int = 600):
+    def process(self, body: str, min_length: int = 40, max_length: int = 60000):
         """
         Processes the content sentences.
 

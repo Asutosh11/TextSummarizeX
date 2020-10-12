@@ -46,7 +46,7 @@ class ModelProcessor(object):
         self.sentence_handler = sentence_handler
         self.random_state = random_state
 
-    def process_content_sentences(self, body: str, min_length: int = 40, max_length: int = 600) -> List[str]:
+    def process_content_sentences(self, body: str, min_length: int = 40, max_length: int = 60000) -> List[str]:
         """
         Processes the content sentences with neural coreference.
         :param body: The raw string body to process
@@ -140,7 +140,7 @@ class ModelProcessor(object):
         body: str,
         ratio: float = 0.2,
         min_length: int = 40,
-        max_length: int = 600,
+        max_length: int = 60000,
         use_first: bool = True,
         algorithm: str = 'kmeans',
         num_sentences: int = None,
@@ -179,7 +179,7 @@ class ModelProcessor(object):
         body: str,
         ratio: float = 0.2,
         min_length: int = 40,
-        max_length: int = 600,
+        max_length: int = 60000,
         use_first: bool = True,
         algorithm: str = 'kmeans',
         num_sentences: int = None
@@ -209,7 +209,7 @@ class ModelProcessor(object):
         body: str,
         ratio: float = 0.2,
         min_length: int = 40,
-        max_length: int = 600,
+        max_length: int = 60000,
         use_first: bool = True,
         algorithm: str = 'kmeans',
         num_sentences: int = None

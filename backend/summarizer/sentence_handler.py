@@ -9,7 +9,7 @@ class SentenceHandler(object):
         self.nlp = language()
         self.nlp.add_pipe(self.nlp.create_pipe('sentencizer'))
 
-    def process(self, body: str, min_length: int = 40, max_length: int = 600) -> List[str]:
+    def process(self, body: str, min_length: int = 40, max_length: int = 60000) -> List[str]:
         """
         Processes the content sentences.
 
