@@ -3,11 +3,7 @@
 <h3>How to run the Flask app as prod, locally using gunicorn?</h3>
 
 ```bash
-gunicorn --bind 127.0.0.1:4400  --workers=2 wsgi:app
-```
-&nbsp;or
-```bash
-gunicorn -b 0.0.0.0:4400 -w=2 wsgi:app
+gunicorn --bind 0.0.0.0:8000  --workers=4 wsgi:app --timeout 10000
 ```
 
 <h3>Dockerize your Flask app</h3>
