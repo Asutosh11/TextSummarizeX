@@ -20,19 +20,19 @@ def allowed_file(filename):
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'doc', 'dox'}
 
 
-def readTxt(fileName):
-    return fileName.read()
+def readTxt(file):
+    return file.read()
 
-def readDocx(filename):
-    doc = Document(filename)
+def readDocx(file):
+    doc = Document(file)
     txt = ""
     for para in doc.paragraphs:
         txt = txt + para.text
     return txt
 
-def readPdf(filename):
+def readPdf(file):
     output_string = StringIO()
-    parser = PDFParser(filename)
+    parser = PDFParser(file)
     doc = PDFDocument(parser)
     rsrcmgr = PDFResourceManager()
     device = TextConverter(rsrcmgr, output_string, laparams=LAParams())
