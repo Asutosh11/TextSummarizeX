@@ -11,7 +11,6 @@ from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.pdfpage import PDFPage
 from pdfminer.pdfparser import PDFParser
 
-
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -40,4 +39,4 @@ def readPdf(file):
     for page in PDFPage.create_pages(doc):
         interpreter.process_page(page)
 
-    return(output_string.getvalue())
+    return output_string.getvalue()

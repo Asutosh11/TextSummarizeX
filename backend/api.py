@@ -30,41 +30,35 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
            
 @app.get("/", response_class=PlainTextResponse)
-async def hello():
+def hello():
     return "It works !!"
            
 
 @app.post('/summary_from_file', response_class=PlainTextResponse)
-async def upload_file(fileInBytes: bytes = File(...), fraction_of_original_text_in_summary: str = Form(...), file_extension: str = Form(...)):
-
-    with open("myfile", "rb") as fileInBytes:
-        file = fileInBytes.read(1)
-        while file != b"":
-        # Do stuff with byte.
-            file = file.read(1)
-
+def upload_file(file: UploadFile = File(...), fraction_of_original_text_in_summary: str = Form(...), file_extension: str = Form(...)):
+    docFile = file.file.read()
     fileExtension = file_extension
     fraction_of_original_text_in_summary = fraction_of_original_text_in_summary
  
     if(fileExtension == 'txt'):
-        raw_txt = fileReader.readTxt(file)
+        raw_txt =  fileReader.readTxt(docFile)
         raw_txt = raw_txt.decode()
     
     elif(fileExtension == 'pdf'):
-        raw_txt = fileReader.readPdf(file)
+        raw_txt = fileReader.readPdf(docFile)
     
     elif(fileExtension == 'docx'):
-        raw_txt = fileReader.readDocx(file)
+        raw_txt =  fileReader.readDocx(docFile)
     
     elif(fileExtension == 'doc'):
-        raw_txt = fileReader.readDocx(file)
+        raw_txt =  fileReader.readDocx(docFile)
               
     return summarize(raw_txt, fraction_of_original_text_in_summary)
   
         
         
 @app.post('/summary_from_url', response_class=PlainTextResponse)
-async def summary_from_url(request: models.SUMMARY_FROM_URL_REQUEST):
+def summary_from_url(request: models.SUMMARY_FROM_URL_REQUEST):
     url = request.url
     fraction_of_original_text_in_summary = request.fraction_of_original_text_in_summary
     text_from_webpage = urlParser.getTextFromURL(url)
@@ -72,14 +66,14 @@ async def summary_from_url(request: models.SUMMARY_FROM_URL_REQUEST):
 
 
 @app.post('/summary_from_text', response_class=PlainTextResponse)
-async def summary_from_text(request: models.SUMMARY_FROM_TEXT_REQUEST):
+def summary_from_text(request: models.SUMMARY_FROM_TEXT_REQUEST):
     text = request.text
     fraction_of_original_text_in_summary = request.fraction_of_original_text_in_summary
     return summarize(text, fraction_of_original_text_in_summary)
     
     
 def summarize(raw_txt, fraction_of_original_text_in_summary):
-    stripped_text = raw_txt.strip().replace("\n","")
+    stripped_text =  raw_txt.strip().replace("\n","")
     summary = bertExtractiveSummarizer.summarize(stripped_text, fraction_of_original_text_in_summary)
     txt_no_special_chars_in_start = re.sub(r"^\W+", "", summary)
     txt_broken_into_paras = makeParagraph(3, txt_no_special_chars_in_start)
@@ -97,7 +91,7 @@ def makeParagraph(full_stops_in_one_para, input_string):
                 number_of_fullstops = 0
         else:
             a+=i
-    return(a)
+    return (a)
 
 
 
