@@ -9,7 +9,7 @@
 ```bash
 apt install python3.7
 apt install python3.7-venv
-cd TextSummarizeX/bacend
+cd TextSummarizeX/backend
 python3.7 -m venv ./.venv
 source ./.venv/bin/activate
 ```
