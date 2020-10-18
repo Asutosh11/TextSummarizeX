@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- 
 from docx import Document
 
-from io import StringIO
+from io import StringIO, BytesIO
 
 from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
@@ -20,18 +20,21 @@ ALLOWED_EXTENSIONS = {'txt', 'pdf', 'doc', 'dox'}
 
 
 def readTxt(file):
-    return file.read()
+    inmemoryfile = BytesIO(file)
+    return inmemoryfile.read()
 
 def readDocx(file):
-    doc = Document(file)
+    inmemoryfile = BytesIO(file)
+    doc = Document(inmemoryfile)
     txt = ""
     for para in doc.paragraphs:
         txt = txt + para.text
     return txt
 
 def readPdf(file):
+    inmemoryfile = BytesIO(file)
     output_string = StringIO()
-    parser = PDFParser(file)
+    parser = PDFParser(inmemoryfile)
     doc = PDFDocument(parser)
     rsrcmgr = PDFResourceManager()
     device = TextConverter(rsrcmgr, output_string, laparams=LAParams())
