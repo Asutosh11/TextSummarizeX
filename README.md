@@ -23,6 +23,6 @@ pip install -r requirements.txt
 4. Run the FastAPI backend server
 
 ```bash
-uvicorn api:app --host 0.0.0.0 --port 8000 --timeout-keep-alive 20000
+uvicorn api:app --host 0.0.0.0 --port 8000 --timeout-keep-alive 20000 --reload
 ```
 
